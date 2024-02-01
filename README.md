@@ -2,7 +2,7 @@
 
 这个Linux脚本根据Veeam官方的加固建议[Veeam Hardened Linux Repository](https://helpcenter.veeam.com/docs/backup/vsphere/hardened_repository.html?ver=120)对Ubuntu 20.04系统进行自动化加固，在使用我的[加固存储库自动配置脚本](https://github.com/Coku2015/Veeam_Repo_Configurator)创建完存储库后，可以用本脚本对Ubuntu系统进行进一步自动加固。
 
-本脚本根据VeeamHub/veeam-hardened-repository的DISA STIG脚本进行修改，适合中国用户加固Ubuntu 20.04系统。
+本脚本根据VeeamHub/veeam-hardened-repository的DISA STIG脚本进行修改，去除了美国军方的相关加固配置，适合中国用户加固Ubuntu 20.04系统。
 
 这个工具并非Veeam官方支持的产品，如有任何问题，请联系lei.wei@veeam.com
 
