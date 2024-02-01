@@ -1,39 +1,34 @@
-# Veeam Hardened Linux Repository
+# Veeam 加固存储库 
 
-This linux script can be used to apply hardening settings based on DISA STIG to [Veeam Hardened Linux Repository](https://helpcenter.veeam.com/docs/backup/vsphere/hardened_repository.html?ver=120). Download and run it on fresh Ubuntu 20.04 installation.
+这个Linux脚本根据Veeam官方的加固建议[Veeam Hardened Linux Repository](https://helpcenter.veeam.com/docs/backup/vsphere/hardened_repository.html?ver=120)对Ubuntu 20.04系统进行自动化加固，在使用我的[加固存储库自动配置脚本](https://github.com/Coku2015/Veeam_Repo_Configurator)创建完存储库后，可以用本脚本对Ubuntu系统进行进一步自动加固。
 
-This tool is community supported and not an officially supported Veeam product.
+本脚本根据VeeamHub/veeam-hardened-repository的DISA STIG脚本进行修改，适合中国用户加固Ubuntu 20.04系统。
 
-## 📗 Documentation
+这个工具并非Veeam官方支持的产品，如有任何问题，请联系lei.wei@veeam.com
 
-**System Requirements:**
+## 📗 文档
 
-- Must be run as elevated user
-- Must be run on fresh Ubuntu 20.04 installation
-- Must be used for Veeam Backup & Replication v12
+**系统要求:**
 
-**Operation:**
+- 必须以root用户身份运行
+- 必须在一台干净安装的Ubuntu 20.04系统上运行
+- 仅支持 Veeam Backup & Replication v12 以上版本
 
-1. Connect through SSH to fresh Ubuntu 20.04 server installation
-2. Copy script to that server.
-3. Run the script with the following command:
+**使用说明:**
+
+1. 通过 SSH 连接到 Ubuntu 20.04 服务器上
+2. 复制脚本内容到该服务器上
+3. 使用以下命令运行脚本:
 ```bash
 sudo bash veeam.harden.sh > output.txt 2>&1
 ```
 
-Note: If you need more verbose output just run that command:
+注意: 如果你需要更详细的输出，只需运行以下的命令:
 ```bash
 sudo bash veeam.harden.sh
 ```
-
-## ✍ Contributions
-
-We welcome contributions from the community! We encourage you to create [issues](https://github.com/VeeamHub/veeam-hardened-repository/issues/new/choose) for Bugs & Feature Requests and submit Pull Requests. For more detailed information, refer to our [Contributing Guide](CONTRIBUTING.md).
 
 ## 🤝🏾 License
 
 * [MIT License](LICENSE)
 
-## 🤔 Questions
-
-If you have any questions or something is unclear, please don't hesitate to [create an issue](https://github.com/VeeamHub/veeam-hardened-repository/issues/new/choose) and let us know!

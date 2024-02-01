@@ -59,7 +59,7 @@ function replace_file {
 
 export DEBIAN_FRONTEND=noninteractive
 clear
-print_job "Veeam DISA STIG automated hardening process started"
+print_job "Veeam Repository automated hardening process started"
 
 print_job "apt update and upgrade"
 run_cmd " apt update && apt upgrade -y"
@@ -541,4 +541,4 @@ run_cmd "systemctl restart chrony.service"
 # load audit rules
 augenrules --load
 
-print_job "Veeam DISA STIG automated hardening process finished"
+print_job "Veeam Repository automated hardening process finished"
