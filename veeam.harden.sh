@@ -95,7 +95,6 @@ run_cmd "systemctl enable --now apparmor.service"
 
 # additional services required to be installed but not mentioned
 run_cmd "apt-get install -y libpam-pwquality"
-run_cmd "apt-get install -y chrony"
 
 # unlocking updates from 'focal-upgrades'
 replace_file "^.*\"\${distro_id}:\${distro_codename}-updates\".*$" "\"\${distro_id}:\${distro_codename}-updates\";" /etc/apt/apt.conf.d/50unattended-upgrades
@@ -474,16 +473,6 @@ print_job "V-238355: operating system must enable and run the uncomplicated fire
 run_cmd "systemctl enable --now ufw.service"
 #run_cmd "systemctl start ufw.service" -- no need as we enable and start already
 
-print_job "V-238356: operating system must, for networked systems, compare internal information system clocks at least every 24 hours with a server"
-echo "server tick.usno.navy.mil iburst maxpoll 16" > /etc/chrony/chrony.conf
-echo "server tock.usno.navy.mil iburst maxpoll 16" >> /etc/chrony/chrony.conf
-echo "server ntp2.usno.navy.mil iburst maxpoll 16" >> /etc/chrony/chrony.conf
-update_file "^.*DAEMON_OPTS.*$" "DAEMON_OPTS=\"-R -F -1\"" /etc/default/chrony
-#run_cmd "systemctl enable --now chrony.service"
-
-#print_job "V-238357: operating system must synchronize internal information system clocks to the authoritative time source"
-#echo "makestep 1 -1" >> /etc/chrony/chrony.conf 
-
 print_job "V-238358: operating system must notify designated personnel if baseline configurations are changed in an unauthorized manner"
 update_file "^.*SILENTREPORTS.*$" "SILENTREPORTS=no" /etc/default/aide 
 
@@ -522,8 +511,8 @@ print_job "V-251504: operating system must not allow accounts configured with bl
 #update_file "^.*nullok.*$" "" /etc/pam.d/common-password
 
 print_job "V-251505: operating system must disable automatic mounting of Universal Serial Bus (USB) mass storage driver"
-run_cmd "echo install usb-storage /bin/true >> /etc/modprobe.d/DISASTIG.conf"
-run_cmd "echo blacklist usb-storage >> /etc/modprobe.d/DISASTIG.conf"
+run_cmd "echo install usb-storage /bin/true >> /etc/modprobe.d/blacklist.conf"
+run_cmd "echo blacklist usb-storage >> /etc/modprobe.d/blacklist.conf"
 
 # restart services to apply changes 
 # sshd 
@@ -534,9 +523,6 @@ run_cmd "systemctl restart auditd.service"
 
 # ufw
 run_cmd "systemctl restart ufw.service"
-
-# chrony
-run_cmd "systemctl restart chrony.service"
 
 # load audit rules
 augenrules --load
